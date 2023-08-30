@@ -10,12 +10,14 @@ import {
     useForm
 } from 'react-hook-form'
 import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../inputs/Input';
 import Button from '../Button';
-const RegisterModal = () => {
+const LoginModal = () => {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal(); 
     const [isLoading, setIsLoading] = useState(false);
     const {
         register,
@@ -25,13 +27,13 @@ const RegisterModal = () => {
         }
     } = useForm<FieldValues>({
         defaultValues : {
-            name : '',
             email : '',
             passworld : ''
         }
     });
     const onSubmit : SubmitHandler<FieldValues> = (data) =>  {
         setIsLoading(true);
+        
         axios.post('/api/register', data)
         .then(()=>{
             registerModal.onClose();
@@ -47,19 +49,12 @@ const RegisterModal = () => {
     const bodyContent = (
          <div className='flex flex-col gap-4'>
             <Heading 
-                title="Welcome to Airbnb"
-                subtitle="Create an account!"
+                title="Welcome Back"
+                subtitle="Login to your account!"
             />
             <Input
                 id="email"
                 label="Email"
-                register={register}
-                errors={errors}
-                required
-            />
-            <Input
-                id="name"
-                label="Name"
                 register={register}
                 errors={errors}
                 required
@@ -118,10 +113,10 @@ const RegisterModal = () => {
     return ( 
         <Modal
             disabled={isLoading}
-            isOpen={registerModal.isOpen}
-            title="Register"
+            isOpen={loginModal.isOpen}
+            title="Login"
             actionLabel='Continue'
-            onClose={registerModal.onClose }
+            onClose={loginModal.onClose }
             onSubmit={handleSubmit(onSubmit)}
             body={bodyContent}
             footer={footerContent}
@@ -129,4 +124,4 @@ const RegisterModal = () => {
      );
 }
  
-export default RegisterModal;
+export default LoginModal;

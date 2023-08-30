@@ -148,7 +148,6 @@ if(!isOpen){
                                 gap-4
                                 w-full
                             ">
-                                
                             {secondaryAction && secondaryActionLabel && (
                                 <Button
                                 outline
@@ -163,6 +162,7 @@ if(!isOpen){
                                     onClick={handleSubmit}
                                 />
                             </div>
+                            {footer}
                         </dd>
                     </dl>
                 </div>

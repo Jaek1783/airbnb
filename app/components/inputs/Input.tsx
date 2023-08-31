@@ -22,7 +22,7 @@ const Input:React.FC<InputProps> = ({
     errors
 }) => {
     return ( 
-        <div className='w-full relative'>
+        <form className='w-full relative' autoComplete="off">
             {formatPrice && (
                 <BiWon
                     size={24}
@@ -37,6 +37,7 @@ const Input:React.FC<InputProps> = ({
             <input
                 id={id}
                 disabled={disabled}
+                autoComplete="new-password"
                 {...register(id, {required})}
                 placeholder=' '
                 type={type}
@@ -78,7 +79,7 @@ const Input:React.FC<InputProps> = ({
             >
                 {label}
             </label>
-        </div>
+        </form>
      );
 }
  

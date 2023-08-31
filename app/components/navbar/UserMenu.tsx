@@ -5,7 +5,12 @@ import MenuItem from './MenuItem';
 import { useCallback, useState } from 'react';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
-const UserMenu = () => {
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
+interface UserMenuProps {
+    currentUser : User | null;
+}
+const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +20,7 @@ const UserMenu = () => {
     const setClose = ()=>{
         setIsOpen(value => !value);
     }
+
     return (
          <div className="relative">
             <ul className="flex flex-row items-center gap-3">
@@ -75,18 +81,64 @@ const UserMenu = () => {
                     text-sm
                 '>
                     <ul className='flex flex-col cursor-pointer '>
-                        <li>
-                            <MenuItem
-                            onClick={()=>{registerModal.onOpen(), setClose()}}
-                                label='Sign-up'
-                            />
-                        </li>
-                        <li>
-                            <MenuItem
-                            onClick={()=>{loginModal.onOpen(), setClose()}}
-                                label='Login'
-                            />
-                        </li>
+                        {currentUser ? (
+                            <>
+                                <li>
+                                <MenuItem
+                                onClick={()=>{setClose()}}
+                                    label='My trips'
+                                />
+                                </li>
+                                <li>
+                                    <MenuItem
+                                    onClick={()=>{setClose()}}
+                                        label='My Favorites'
+                                    />
+                                </li>
+                                <li>
+                                    <MenuItem
+                                    onClick={()=>{setClose()}}
+                                        label='My reservations'
+                                    />
+                                </li>
+                                <li>
+                                    <MenuItem
+                                    onClick={()=>{setClose()}}
+                                        label='My properties'
+                                    />
+                                </li>
+                                <li>
+                                    <MenuItem
+                                    onClick={()=>{setClose()}}
+                                        label='Airbnb my home'
+                                    />
+                                </li>
+                                <li><hr/></li>
+                                <li>
+                                    <MenuItem
+                                    onClick={()=>{signOut(), setClose()}}
+                                        label='Logout'
+                                    />
+                                </li>
+
+                            </>
+                            
+                        ):(
+                            <>
+                            <li>
+                                <MenuItem
+                                onClick={()=>{registerModal.onOpen(), setClose()}}
+                                    label='Sign-up'
+                                />
+                            </li>
+                            <li>
+                                <MenuItem
+                                onClick={()=>{loginModal.onOpen(), setClose()}}
+                                    label='Login'
+                                />
+                            </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             )}

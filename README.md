@@ -5,10 +5,12 @@
 - Airbnb 클론코딩을 이용한 웹개발 학습
 
 ## use stacks
-- React-hook-from
-- React-hot-toast
-- React-icons
-- Zustand
+- react-hook-from
+- react-hot-toast
+- react-icons
+- react-select
+- leaflet
+- zustand
 - query-string
 - auto prefixer
 - axios

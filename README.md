@@ -17,18 +17,16 @@
 - leaflet
 - zustand
 - query-string
-- auto prefixer
+- autoprefixer
 - axios
 - bcrypt
 - next-auth
-- @next-auth/prisma-adapter
-- @prisma/client
-- World-countries
-- Github sign and login
-- Google sign and login
-- Typescript
-- Next.js
-- Tailwindcss
+- world-countries
+- github sign and login
+- google sign and login
+- typescript
+- next.js
+- tailwindcss
 - postcss
-- Prisma
-- MongoDB
+- prisma
+- mongoDB

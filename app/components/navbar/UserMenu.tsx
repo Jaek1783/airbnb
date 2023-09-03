@@ -1,4 +1,5 @@
 'use client';
+
 import {AiOutlineMenu} from 'react-icons/ai';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
@@ -8,12 +9,14 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import useRentModal from '@/app/hooks/useRentModal';
 interface UserMenuProps {
     currentUser : SafeUser | null;
 }
 const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
+    const rentModal = useRentModal();
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = useCallback(()=>{
         setIsOpen(value => !value)
@@ -21,12 +24,21 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
     const setClose = ()=>{
         setIsOpen(value => !value);
     }
-console.log(currentUser)
+
+    const onRent = useCallback(()=>{
+        if(!currentUser){
+            return loginModal.onOpen();
+        }
+        // open Rent Modal
+        rentModal.onOpen();
+
+    },[currentUser, loginModal, rentModal ])
+
     return (
          <div className="relative">
             <ul className="flex flex-row items-center gap-3">
                 <li
-                    onClick={()=>{}}
+                    onClick={onRent}
                     className="
                         hidden
                         md:block
@@ -110,7 +122,7 @@ console.log(currentUser)
                                 </li>
                                 <li>
                                     <MenuItem
-                                    onClick={()=>{setClose()}}
+                                    onClick={()=>{rentModal.onOpen(), setClose()}}
                                         label='Airbnb my home'
                                     />
                                 </li>

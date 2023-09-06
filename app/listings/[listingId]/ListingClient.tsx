@@ -35,17 +35,21 @@ const ListingClient:React.FC<ListingClientProps> = ({
 }) => {
     const loginModal = useLoginModal();
     const router = useRouter();
-
     const disabledDates = useMemo(()=>{
         let dates:Date[] = [];
+
         reservations.forEach((reservation:any)=>{
+
             const range = eachDayOfInterval({
                 start:new Date(reservation.startDate),
                 end: new Date(reservation.endDate)
             });
+
             dates = [...dates, ...range]
+
         });
         return dates
+          
     },[reservations])
 
     const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +62,7 @@ const ListingClient:React.FC<ListingClientProps> = ({
         }
         setIsLoading(true);
 
-        axios.post('api/reservations', {
+        axios.post('/api/reservations', {
             totalPrice,
             startDate:dateRange.startDate,
             endDate:dateRange.endDate,

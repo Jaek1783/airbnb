@@ -28,7 +28,7 @@ model User {
 
 model Account {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String@db.ObjectId
+  userId String @db.ObjectId
   type String
   provider String
   providerAccountId String
@@ -71,6 +71,7 @@ model Reservation {
     endDate DateTime
     totalPrice Int
     createdAt DateTime @default(now())
+
     user User @relation(fields: [userId], references: [id], onDelete : Cascade )
-    listing Listing @relation(fields: [userId], references: [id], onDelete : Cascade )
+    listing Listing @relation(fields: [listingId], references: [id], onDelete : Cascade )
 }

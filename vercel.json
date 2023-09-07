@@ -1,0 +1,13 @@
+{
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node",
+        "config": {
+          "VERCEL_ENV": "production",
+          "prisma_generate": "true"
+        }
+      }
+    ]
+  }
+  

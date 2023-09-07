@@ -12,8 +12,8 @@ import ListingCard from "../components/listings/ListingCard";
 import { SafeReservation, SafeUser } from "../types";
 
 interface TripsClientProps{
-    currentUser? : SafeUser | null;
     reservations : SafeReservation[]
+    currentUser? : SafeUser | null;
 }
 
 const TripsClinet:React.FC<TripsClientProps> = ({
@@ -26,7 +26,7 @@ const TripsClinet:React.FC<TripsClientProps> = ({
     const onCancel = useCallback((id:string)=>{
         setDeletingId(id);
 
-        axios.delete(`/api/reservation/${id}`)
+        axios.delete(`/api/reservations/${id}`)
         .then(()=>{
             toast.success('Reservation cancelled')
             router.refresh();

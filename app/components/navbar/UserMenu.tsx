@@ -1,15 +1,18 @@
 'use client';
 
-import {AiOutlineMenu} from 'react-icons/ai';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
-import { useCallback, useState } from 'react';
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-import useLoginModal from '@/app/hooks/useLoginModal';
 
+import {AiOutlineMenu} from 'react-icons/ai';
+import { useCallback, useState } from 'react';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+
 import useRentModal from '@/app/hooks/useRentModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
+import { useRouter } from 'next/navigation';
+
 interface UserMenuProps {
     currentUser : SafeUser | null;
 }
@@ -17,10 +20,13 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const rentModal = useRentModal();
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+    
     const toggleOpen = useCallback(()=>{
         setIsOpen(value => !value)
     },[]);
+    
     const setClose = ()=>{
         setIsOpen(value => !value);
     }
@@ -98,7 +104,7 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                             <>
                                 <li>
                                 <MenuItem
-                                onClick={()=>{setClose()}}
+                                onClick={()=>{router.push('/trips'),setClose()}}
                                     label='My trips'
                                 />
                                 </li>

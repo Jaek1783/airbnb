@@ -5,11 +5,12 @@ interface IParams {
     userId? : string;
     authorId?:string;
 }
-export default async function getReservation(
+export default async function getReservations(
     params:IParams
 ){
     try{
         const {listingId, userId, authorId} = params;
+         
         const query:any ={};
 
         if(listingId){

@@ -116,7 +116,7 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                                 </li>
                                 <li>
                                     <MenuItem
-                                    onClick={()=>{setClose()}}
+                                    onClick={()=>{router.push('/reservations'),setClose()}}
                                         label='My reservations'
                                     />
                                 </li>

@@ -110,20 +110,20 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                                 </li>
                                 <li>
                                     <MenuItem
-                                    onClick={()=>{setClose()}}
+                                    onClick={()=>{router.push('/favorites'),setClose()}}
                                         label='My Favorites'
                                     />
                                 </li>
                                 <li>
                                     <MenuItem
                                     onClick={()=>{router.push('/reservations'),setClose()}}
-                                        label='My reservations'
+                                        label='My Reservations'
                                     />
                                 </li>
                                 <li>
                                     <MenuItem
-                                    onClick={()=>{setClose()}}
-                                        label='My properties'
+                                    onClick={()=>{router.push('/properties'),setClose()}}
+                                        label='My Properties'
                                     />
                                 </li>
                                 <li>
@@ -135,7 +135,7 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                                 <li><hr/></li>
                                 <li>
                                     <MenuItem
-                                    onClick={()=>{signOut(), setClose()}}
+                                    onClick={()=>{router.push('/'),signOut(), setClose()}}
                                         label='Logout'
                                     />
                                 </li>

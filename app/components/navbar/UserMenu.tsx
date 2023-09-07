@@ -135,7 +135,7 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                                 <li><hr/></li>
                                 <li>
                                     <MenuItem
-                                    onClick={()=>{router.push('/'),signOut(), setClose()}}
+                                    onClick={()=>{signOut(), setClose()}}
                                         label='Logout'
                                     />
                                 </li>

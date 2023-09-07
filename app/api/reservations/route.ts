@@ -13,7 +13,6 @@ export async function POST(
   }
 
   const body = await request.json();
-  
   const { 
     listingId,
     startDate,

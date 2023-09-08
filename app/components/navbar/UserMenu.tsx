@@ -4,7 +4,7 @@ import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 
 import {AiOutlineMenu} from 'react-icons/ai';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
 
@@ -39,7 +39,13 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
         rentModal.onOpen();
 
     },[currentUser, loginModal, rentModal ])
-
+    
+    const userName = useMemo(()=>{
+        if(!currentUser){
+            return 'Airbnb'
+        }
+        return currentUser.name
+    },[currentUser])
     return (
          <div className="relative">
             <ul className="flex flex-row items-center gap-3">
@@ -58,7 +64,7 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                         cursor-pointer
                     "
                 >
-                    Airbnb your home
+                    {userName} yor home
                 </li>
                 <li 
                     onClick={toggleOpen}
